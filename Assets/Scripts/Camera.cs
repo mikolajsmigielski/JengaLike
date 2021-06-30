@@ -12,20 +12,30 @@ public class Camera : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        SetCamreraPosiition();
     }
 
     // Update is called once per frame
     void Update()
+    {
+        if (Input.GetMouseButton(1))
+            SetCamreraPosiition();
+    }
+    void SetCamreraPosiition()
     {
         float deltaX = Input.GetAxis("Mouse X");
         float deltaY = Input.GetAxis("Mouse Y");
 
         AxisX += deltaY * speed;
         AxisY += deltaX * speed;
-        var rotation = Quaternion.Euler(AxisX, AxisY, 0);
-        transform.position = rotation * Vector3.up * distance;
 
-        transform.LookAt(Vector3.zero);
+        
+
+        AxisX = Mathf.Clamp(AxisX, -85f, 0f);
+
+        var rotation = Quaternion.Euler(AxisX, AxisY, 0);
+        transform.position = rotation * Vector3.forward * distance;
+
+        transform.LookAt(Vector3.up * 5f);
     }
 }
