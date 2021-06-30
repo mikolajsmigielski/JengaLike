@@ -5,13 +5,14 @@ using UnityEngine;
 public class Block : MonoBehaviour
 {
     public bool IsSpecial = false;
-
+    public bool Enabled = true;
     public Material NormalMaterial;
     public Material SpecialMaterial;
     // Start is called before the first frame update
     void Start()
     {
         SetMaterial();
+        Enabled = true;
     }
 
     // Update is called once per frame
