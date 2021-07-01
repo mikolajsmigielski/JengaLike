@@ -14,15 +14,23 @@ public class GameControler : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        RenderSettings.ambientLight = Color.white;
-        RenderSettings.ambientMode = UnityEngine.Rendering.AmbientMode.Flat;
+        FixLighting();
         TextComponent.enabled = false;
         NumberOfSpecialBlockAtTheBeginning = CountBlocks(special: true);
         IsPlaying = true;
 
     }
+    public void OnValidate()
+    {
+        FixLighting();
+    }
 
-    
+    void FixLighting()
+    {
+        RenderSettings.ambientLight = Color.white;
+        RenderSettings.ambientMode = UnityEngine.Rendering.AmbientMode.Flat;
+    }
+
     public int CountBlocks(bool special)
     {
         return FindObjectsOfType<Block>().Count(block => block.Enabled && block.IsSpecial == special);
