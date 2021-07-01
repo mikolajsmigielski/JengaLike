@@ -27,6 +27,7 @@ public class Block : MonoBehaviour
     }
     private void OnMouseDrag()
     {
+        if (FindObjectOfType<GameControler>().IsPlaying == false) return;
         var cameraPosition = FindObjectOfType<Camera>().transform.position;
         var direction = (cameraPosition - transform.position).normalized;
 
